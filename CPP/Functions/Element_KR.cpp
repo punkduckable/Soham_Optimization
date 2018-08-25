@@ -131,7 +131,7 @@ using namespace Eigen;
         LT0T1 = Lambda_d1(T0,T01,T,T1);            LTt1 = Lambda_d1(T,T1,t,t1);
         RT1 = Rotation_d1(T,T1,PSI,PSI_1);         Rt1 = Rotation_d1(t,t1,psi,psi_1);
         Lambda_dr(T,t,tr, LTtr);                   Rtr = Rotation_dr(t,tr,psi,psi_r);
-        LTt1r = Lambda_d1r(T,T1,t,t1,tr,t1r);      Rt1r = Rotation_d1r(t,t1,tr,t1r,psi,psi_1,psi_r,psi_1r);
+        Lambda_d1r(T,T1,t,t1,tr,t1r,LTt1r);        Rt1r = Rotation_d1r(t,t1,tr,t1r,psi,psi_1,psi_r,psi_1r);
 //        cout << "Required Matrices: " << endl<< endl;
 //        cout << " LT0T: " << endl << LT0T << endl << endl;cout << " LTt: " << endl << LTt << endl << endl;
 //        cout << " RT: " << endl << RT << endl << endl;cout << " Rt: " << endl << Rt << endl << endl;
@@ -203,7 +203,7 @@ using namespace Eigen;
               // Required Matrices.
               ben_s=Vector2d::Zero();                                tor_s = ben_s; ben_rs = ben_s; tor_rs = ben_s;
               Lambda_dr(T,t,ts,LTts);                                Rts=Rotation_dr(t,ts,psi,psi_s);
-              LTt1s=Lambda_d1r(T,T1,t,t1,ts,t1s);                    Rt1s=Rotation_d1r(t,t1,ts,t1s,psi,psi_1,psi_s,psi_1s);
+              Lambda_d1r(T,T1,t,t1,ts,t1s,LTt1s);                    Rt1s=Rotation_d1r(t,t1,ts,t1s,psi,psi_1,psi_s,psi_1s);
               Lambda_drs(T,t,tr,ts,trs,LTtrs);                       Rtrs=Rotation_drs(t,tr,ts,trs,psi,psi_r,psi_s);
               Lambda_d1rs(T,T1,t,t1,tr,ts,t1r,t1s,trs,t1rs,LTt1rs);  Rt1rs=Rotation_d1rs(t,t1,tr,ts,t1r,t1s,trs,t1rs,psi,psi_1,psi_r,psi_s,psi_1r,psi_1s);
 //              cout << " LTts: " << endl << LTts << endl << endl;cout << " Rts: " << endl << Rts << endl << endl;
