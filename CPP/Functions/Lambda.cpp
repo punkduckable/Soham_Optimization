@@ -11,7 +11,7 @@ void Lambda( const Vector3d & N0, const Vector3d & N, Matrix3d & matrix) {
 
 	// return variable
 	matrix = d*I
-        + cross_vM(C,I)
-        + (1/(1+d))*(C*C.transpose());
+         + cross_vM(C,I)
+         + (1/(1+d))*(C*C.transpose());
 
 } // void Lambda( const Vector3d & N0, const Vector3d & N, Matrix3d & matrix) {

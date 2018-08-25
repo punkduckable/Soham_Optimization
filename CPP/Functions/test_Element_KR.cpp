@@ -3,6 +3,7 @@
 #include "Eigen/Dense"
 #include <time.h>
 
+////////// ROBERT ADDED THE FOLLOWING LINE OF CODE IS FOR TESTING //////////
 void Test_Function(void);
 
 using namespace std;
@@ -30,8 +31,14 @@ int main()
 	cout << "ngp: " << ngp << endl << endl;
 	MatrixXd K_Element(4*nos,4*nos),F_Element(4*nos,1); // initializing element K(consistent tangent) and R (resiude).
 
+	clock_t timer = clock();
 
-  tie(K_Element,F_Element) = Element_KR(P,Q,End_pt,Ele2Cp,knotVector,order,weights,Mat,A0,ngp);
+ 	for(unsigned int i = 0; i < 1; i++)
+    tie(K_Element,F_Element) = Element_KR(P,Q,End_pt,Ele2Cp,knotVector,order,weights,Mat,A0,ngp);
+
+	timer = clock() - timer;
+
+	printf("Runtime: %lu ms\n", (1000*timer)/(CLOCKS_PER_SEC));
 
     cout << "Residue Vector: "<< endl << F_Element << endl << endl;
     cout << "Stiffness Matrix: "<< endl << K_Element << endl << endl;
