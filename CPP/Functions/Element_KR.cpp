@@ -128,7 +128,7 @@ using namespace Eigen;
         Ben=Vector2d::Zero(); ben=Ben;ben_r=Ben;Tor=Ben; tor=Ben;tor_r=Ben;
         Lambda(T0,T, LT0T);                        Lambda(T,t, LTt);
         RT = Rotation(T,PSI);                      Rt = Rotation(t,psi);
-        LT0T1 = Lambda_d1(T0,T01,T,T1);            LTt1 = Lambda_d1(T,T1,t,t1);
+        Lambda_d1(T0,T01,T,T1,LT0T1);              Lambda_d1(T,T1,t,t1, LTt1);
         RT1 = Rotation_d1(T,T1,PSI,PSI_1);         Rt1 = Rotation_d1(t,t1,psi,psi_1);
         Lambda_dr(T,t,tr, LTtr);                   Rtr = Rotation_dr(t,tr,psi,psi_r);
         Lambda_d1r(T,T1,t,t1,tr,t1r,LTt1r);        Rt1r = Rotation_d1r(t,t1,tr,t1r,psi,psi_1,psi_r,psi_1r);

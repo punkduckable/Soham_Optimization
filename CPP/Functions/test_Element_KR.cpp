@@ -33,6 +33,7 @@ int main()
 
 	clock_t timer = clock();
 
+	////////// ROBERT ADDED THIS FOR LOOP FOR TESTING //////////
  	for(unsigned int i = 0; i < 1; i++)
     tie(K_Element,F_Element) = Element_KR(P,Q,End_pt,Ele2Cp,knotVector,order,weights,Mat,A0,ngp);
 
@@ -78,7 +79,7 @@ void Test_Function(void) {
 
 	// Run specified function a lot of times
 	for(unsigned long i = 0; i < Num_El; i++)
-		Lambda_d1r(N0[i], N[i], N0[i], N[i], N0[i], N[i], matrix[i]);
+		Lambda_d1(N0[i], N[i], N0[i], N[i], matrix[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;
