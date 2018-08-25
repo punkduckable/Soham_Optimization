@@ -78,10 +78,15 @@ void Test_Function(void) {
 
 	// Run specified function a lot of times
 	for(unsigned long i = 0; i < Num_El; i++)
-		matrix[i] = Lambda_drs(N0[i], N[i], N0[i], N[i], N0[i]);
+		Lambda_drs(N0[i], N[i], N0[i], N[i], N0[i], matrix[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;
+
+	// Free dynamically allocated memory
+	delete [] matrix;
+	delete [] N0;
+	delete [] N;
 
 	// Report time
 	std::printf("It took %lu ms to run the code %lu times\n", (long)(( 1000*timer )/( (double)CLOCKS_PER_SEC )), Num_El);
