@@ -78,7 +78,7 @@ void Test_Function(void) {
 
 	// Run specified function a lot of times
 	for(unsigned long i = 0; i < Num_El; i++)
-		Lambda(N0[i], N[i], matrix[i]);
+		matrix[i] = Lambda_drs(N0[i], N[i], N0[i], N[i], N0[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;
