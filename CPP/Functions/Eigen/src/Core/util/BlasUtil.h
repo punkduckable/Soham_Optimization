@@ -222,11 +222,6 @@ class blas_data_mapper {
     return ploadt<Packet, AlignmentType>(&operator()(i, j));
   }
 
-  template <typename PacketT, int AlignmentT>
-  EIGEN_DEVICE_FUNC EIGEN_ALWAYS_INLINE PacketT load(Index i, Index j) const {
-    return ploadt<PacketT, AlignmentT>(&operator()(i, j));
-  }
-
   EIGEN_DEVICE_FUNC EIGEN_ALWAYS_INLINE HalfPacket loadHalfPacket(Index i, Index j) const {
     return ploadt<HalfPacket, AlignmentType>(&operator()(i, j));
   }
@@ -289,8 +284,8 @@ template<typename XprType> struct blas_traits
     ExtractType,
     typename _ExtractType::PlainObject
     >::type DirectLinearAccessType;
-  static inline EIGEN_DEVICE_FUNC ExtractType extract(const XprType& x) { return x; }
-  static inline EIGEN_DEVICE_FUNC const Scalar extractScalarFactor(const XprType&) { return Scalar(1); }
+  static inline ExtractType extract(const XprType& x) { return x; }
+  static inline const Scalar extractScalarFactor(const XprType&) { return Scalar(1); }
 };
 
 // pop conjugate
@@ -318,8 +313,8 @@ struct blas_traits<CwiseBinaryOp<scalar_product_op<Scalar>, const CwiseNullaryOp
   typedef blas_traits<NestedXpr> Base;
   typedef CwiseBinaryOp<scalar_product_op<Scalar>, const CwiseNullaryOp<scalar_constant_op<Scalar>,Plain>, NestedXpr> XprType;
   typedef typename Base::ExtractType ExtractType;
-  static inline EIGEN_DEVICE_FUNC ExtractType extract(const XprType& x) { return Base::extract(x.rhs()); }
-  static inline EIGEN_DEVICE_FUNC Scalar extractScalarFactor(const XprType& x)
+  static inline ExtractType extract(const XprType& x) { return Base::extract(x.rhs()); }
+  static inline Scalar extractScalarFactor(const XprType& x)
   { return x.lhs().functor().m_other * Base::extractScalarFactor(x.rhs()); }
 };
 template<typename Scalar, typename NestedXpr, typename Plain>

@@ -10,14 +10,14 @@ using namespace Eigen;
 	// // Element_KR: Gives Consistent Tangent and Residual Vector for an element.
 
 	// //Output
-	
-	// F_Element: Vector containing residual vector. 
+
+	// F_Element: Vector containing residual vector.
 	// Provides residual vector of corresponding dof of all control points in an element.
 	// Membrane and Bending contributions considered.
-	
+
 	// // Inputs
-	
-	// P: cpt matrix containing x-y-z of all cpts of undeformed configuration. Each column of P has one cpt 
+
+	// P: cpt matrix containing x-y-z of all cpts of undeformed configuration. Each column of P has one cpt
 	// Q: cpt matrix containing x-y-z of all cpts at some newton iteration. Each column of Q has one cpt
 	// End_pt: row vector containing end points (knot vector end pts) of an element.
 	// Parent Space : e; Parametric Space : E; Physical Space : x and X.
@@ -25,11 +25,11 @@ using namespace Eigen;
 	// dof: matrix with degrees of freedom corresponding to the control pts.
 	// row: x-y-z components of cpt(no of rows = 3 for 3D) and column = index of cpt (no of columns = total number of cpts).
 	// knotVector: Knot vector for a patch to which the element belongs.
-	// order: order of NURBS shape functions. 
+	// order: order of NURBS shape functions.
 	// weights: wieghts associated with the knot vector.
 	// Mat: Material parameters.
 	// A0: Refrence triad vectors. (3x3 matrix of those vectors).
-	
+
 	//**************************************************************************************************************//
     int i,dof = 4; // degrees of freedom per cpt. (2 for 2D and 4 for 3D).
     double xi; // parametric point of knotvector corresponding to the gauss points.
@@ -46,14 +46,14 @@ using namespace Eigen;
     MatrixXd P_ele(4,nos),Q_ele(4,nos);// P_ele : cpt matrix containing x-y-z of all cpts within element.
 	for(i=0; i < nos; i++)
 	{
-			P_ele.col(i)=P.col(Ele2Cp(i)-1);  
+			P_ele.col(i)=P.col(Ele2Cp(i)-1);
 	    	Q_ele.col(i)=Q.col(Ele2Cp(i)-1);
 	}
 //	cout<< P_ele << endl << endl;cout<< Q_ele << endl << endl;
 	MatrixXd K_Element,F_Element; // initializing element K(consistent tangent) and R (resiude).
 	K_Element = MatrixXd::Zero(4*nos,4*nos);F_Element = MatrixXd::Zero(4*nos,1);
 //	cout<< K_Element << endl << endl;cout<< F_Element << endl << endl;
-    //******** Get Gauss points and values. ********//	
+    //******** Get Gauss points and values. ********//
     VectorXd Gauss_e,Gauss_W;
 //    cout<< ngp << endl<< endl;
 	tie(Gauss_e,Gauss_W) = Gauss_quad(ngp);
@@ -76,7 +76,7 @@ using namespace Eigen;
 //    cout<< N << endl<< endl;cout<< dN1 << endl<< endl;cout<< dN2 << endl<< endl;
 //	cout << "Soham" << endl << endl;
 	//******** Compute elements of K and R  ********//
-	
+
 	// define required vectors and matrices.
 	int j,j1,k,k1,r,s,m1; // variables for for loops and dofs.
 	double norm_A1,norm_a1,PSI,PSI_1,psi,psi_1,psi_r,psi_1r,psi_s,psi_1s;
@@ -85,8 +85,8 @@ using namespace Eigen;
 	Vector3d T,t,T01,T1,t1,tr,t1r,ts,t1s,trs,t1rs,vec1,vec2,vec3,vec4,vec5,vec6;
 	Vector2d Ben,ben,ben_r,Tor,tor,tor_r,ben_s,tor_s,ben_rs,tor_rs;
 	Matrix3d LT0T,LTt,RT,Rt,LT0T1,LTt1,RT1,Rt1,LTtr,Rtr,LTt1r,Rt1r,LTts,Rts,LTt1s,Rt1s,LTtrs,Rtrs,LTt1rs,Rt1rs;
-	
-	
+
+
 	for (i=0;i<ngp;i++) // Gauss point loop
 	{
 		for (j=0;j<nos;j++) // jth control point
@@ -106,7 +106,7 @@ using namespace Eigen;
 //				cout << "Forming required vectors: " << endl<< endl;
 //				cout << xc << endl<< endl;cout << Xc << endl<< endl;cout << a1 << endl<< endl;cout << A1 << endl<< endl;
 //               	cout << a11 << endl<< endl;cout << A11 << endl<< endl;
-				
+
 				vec1=A1.segment(0,3);vec2=a1.segment(0,3);
                 norm_A1 = vec1.norm();norm_a1 = vec2.norm();
                 ar(j1,0)=N(0,j);a1r(j1,0)=dN1(i,j);a11r(j1,0)=dN2(i,j);
@@ -122,10 +122,11 @@ using namespace Eigen;
 //                cout << "Normalized tangent vectors: " << endl<< endl;
 //				cout << T << endl<< endl;cout << t << endl<< endl;cout << T01 << endl<< endl;
 //				cout << T1 << endl<< endl;cout << t1 << endl<< endl;cout << tr << endl<< endl;cout << t1r << endl<< endl;
-                
+
                 // Required Matrices.
                 Ben=Vector2d::Zero(); ben=Ben;ben_r=Ben;Tor=Ben; tor=Ben;tor_r=Ben;
-                LT0T=Lambda(T0,T);LTt=Lambda(T,t);RT=Rotation(T,PSI);Rt=Rotation(t,psi);
+                Lambda(T0,T, LT0T); Lambda(T,t, LTt);
+                RT=Rotation(T,PSI);Rt=Rotation(t,psi);
                 LT0T1=Lambda_d1(T0,T01,T,T1);LTt1=Lambda_d1(T,T1,t,t1);
                 RT1=Rotation_d1(T,T1,PSI,PSI_1);Rt1=Rotation_d1(t,t1,psi,psi_1);
                 LTtr=Lambda_dr(T,t,tr);Rtr=Rotation_dr(t,tr,psi,psi_r);
@@ -147,7 +148,7 @@ using namespace Eigen;
 				}
 //				cout << "Bending terms in Residue: " << endl<< endl;
 //                cout << Ben<<endl<< endl;cout << ben<<endl<< endl;cout << ben_r<<endl<< endl;
-						
+
 				// Torsion terms in Residue
 				vec1=(RT1*LT0T+RT*LT0T1)*A0.col(2);vec2=RT*LT0T*A0.col(1);
 				Tor(0)= vec1.dot(vec2);
@@ -161,7 +162,7 @@ using namespace Eigen;
 				tor_r(1)= tor_dr(LT0T,LTt,LT0T1,LTt1,LTtr,LTt1r,RT,Rt,RT1,Rt1,Rtr,Rt1r,A0,2,3);
 //				cout << "Torsion terms in Residue: " << endl<< endl;
 //				cout << Tor<<endl<< endl;cout << tor<<endl<< endl;cout << tor_r<<endl<< endl;
-                
+
                 // Membrane Contribution.
                 vec1=a1.segment(0,3);vec2=A1.segment(0,3);vec3=a1r.segment(0,3);
                 Fm = (Area*E*0.5*(vec1.dot(vec1)-vec2.dot(vec2))*vec1.dot(vec3))/pow(vec2.norm(),3);
@@ -174,15 +175,15 @@ using namespace Eigen;
 				vec2=A1.segment(0,3);
                 Ft = (0.5*G*Ip/vec2.norm())*((tor(0)-Tor(0))*tor_r(0)+(tor(1)-Tor(1))*tor_r(1));
 //				cout << "Ft" << endl << Ft << endl<< endl;
-                // Total element residue vector. 
+                // Total element residue vector.
                 F_Element(r)=F_Element(r)+(Fm+Fb+Ft)*J1*Gauss_W(i);
                 for (k=0;k<nos;k++)
                 {
                 	for (k1=0;k1<dof;k1++)
                 	{
-                		s=dof*k+k1;// sth dof (local). 
+                		s=dof*k+k1;// sth dof (local).
                 		if (r<=s)
-						{  
+						{
 							// Forming required vectors.
 							as=Vector4d::Zero();a1s=as;a11s=as;
 							as(k1,0)=N(0,k);a1s(k1,0)=dN1(i,k);a11s(k1,0)=dN2(i,k);psi_s=as(3,0);psi_1s=a1s(3,0);
@@ -213,7 +214,7 @@ using namespace Eigen;
 							}
 //						    cout << "Bending terms in Stiffness: " << endl<< endl;
 //                            cout << ben_s <<endl<< endl;cout <<ben_rs <<endl<< endl;
-							
+
 						    // Torsion terms in Stiffness
 						    tor_s(0)= tor_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,A0,3,2);
 						    tor_rs(0)=tor_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,A0,3,2);
@@ -233,30 +234,16 @@ using namespace Eigen;
 //						    cout << "Kt" << endl << Kt << endl<< endl;
 							//Total Stiffness
 						    K_Element(r,s)=K_Element(r,s)+(Km+Kb+Kt)*J1*Gauss_W(i);
-						    
+
 						}
-                		
+
 					}
 				}
-			}
-		}
-	}
+			} // for (j1=0;j1<dof;j1++)
+		} // for (j=0;j<nos;j++)
+	} // for (i=0;i<ngp;i++)
 //    cout << "Residue Vector: "<< endl << F_Element << endl << endl;
 //    cout << "Stiffness Matrix: "<< endl << K_Element << endl << endl;
     return make_tuple(K_Element,F_Element);
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

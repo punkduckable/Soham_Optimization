@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Eigen/Dense"
 #include <tuple>
+
 using namespace std;
 using namespace Eigen;
 tuple<VectorXd, VectorXd> Gauss_quad(int order)

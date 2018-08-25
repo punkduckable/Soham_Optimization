@@ -157,11 +157,6 @@ template<typename Derived> class DenseBase
           * we are dealing with a column-vector (if there is only one column) or with
           * a row-vector (if there is only one row). */
 
-      NumDimensions = int(MaxSizeAtCompileTime) == 1 ? 0 : bool(IsVectorAtCompileTime) ? 1 : 2,
-        /**< This value is equal to Tensor::NumDimensions, i.e. 0 for scalars, 1 for vectors, 
-         * and 2 for matrices.
-         */
-
       Flags = internal::traits<Derived>::Flags,
         /**< This stores expression \ref flags flags which may or may not be inherited by new expressions
           * constructed from this one. See the \ref flags "list of flags".
@@ -400,7 +395,7 @@ template<typename Derived> class DenseBase
       * Notice that in the case of a plain matrix or vector (not an expression) this function just returns
       * a const reference, in order to avoid a useless copy.
       * 
-      * \warning Be careful with eval() and the auto C++ keyword, as detailed in this \link TopicPitfalls_auto_keyword page \endlink.
+      * \warning Be carefull with eval() and the auto C++ keyword, as detailed in this \link TopicPitfalls_auto_keyword page \endlink.
       */
     EIGEN_DEVICE_FUNC
     EIGEN_STRONG_INLINE EvalReturnType eval() const
@@ -575,17 +570,13 @@ template<typename Derived> class DenseBase
 #define EIGEN_CURRENT_STORAGE_BASE_CLASS Eigen::DenseBase
 #define EIGEN_DOC_BLOCK_ADDONS_NOT_INNER_PANEL
 #define EIGEN_DOC_BLOCK_ADDONS_INNER_PANEL_IF(COND)
-#define EIGEN_DOC_UNARY_ADDONS(X,Y)
-#   include "../plugins/CommonCwiseUnaryOps.h"
 #   include "../plugins/BlockMethods.h"
-#   include "../plugins/IndexedViewMethods.h"
 #   ifdef EIGEN_DENSEBASE_PLUGIN
 #     include EIGEN_DENSEBASE_PLUGIN
 #   endif
 #undef EIGEN_CURRENT_STORAGE_BASE_CLASS
 #undef EIGEN_DOC_BLOCK_ADDONS_NOT_INNER_PANEL
 #undef EIGEN_DOC_BLOCK_ADDONS_INNER_PANEL_IF
-#undef EIGEN_DOC_UNARY_ADDONS
 
     // disable the use of evalTo for dense objects with a nice compilation error
     template<typename Dest>
