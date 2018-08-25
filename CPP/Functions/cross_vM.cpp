@@ -1,9 +1,9 @@
-#include<iostream>
-#include"Eigen/Dense"
+#include <iostream>
+#include "Eigen/Dense"
+
 using namespace Eigen;
-using namespace std;
-Matrix3d cross_vM( Vector3d &v, Matrix3d &M )
-{
+
+Matrix3d cross_vM( Vector3d &v, Matrix3d &M ) {
 	Matrix3d matrix;
 
 	/* Eigen's matricies are stored in column-major order. To improve performnace,
@@ -27,4 +27,4 @@ Matrix3d cross_vM( Vector3d &v, Matrix3d &M )
 
 //	cout << matrix << endl;
 	return matrix;
-}
+} // Matrix3d cross_vM( Vector3d &v, Matrix3d &M ) {

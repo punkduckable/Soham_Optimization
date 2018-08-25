@@ -3,6 +3,8 @@
 #include "Eigen/Dense"
 #include <time.h>
 
+void Test_Function(void);
+
 using namespace std;
 using namespace Eigen;
 int main()
@@ -28,17 +30,52 @@ int main()
 	cout << "ngp: " << ngp << endl << endl;
 	MatrixXd K_Element(4*nos,4*nos),F_Element(4*nos,1); // initializing element K(consistent tangent) and R (resiude).
 
-	clock_t timer = clock();
 
-	for(unsigned int i = 0; i < 500; i++)
-    tie(K_Element,F_Element) = Element_KR(P,Q,End_pt,Ele2Cp,knotVector,order,weights,Mat,A0,ngp);
-
-	timer = clock() - timer;
-
-	printf("Runtime: %lu ms\n", (1000*timer)/(CLOCKS_PER_SEC));
+  tie(K_Element,F_Element) = Element_KR(P,Q,End_pt,Ele2Cp,knotVector,order,weights,Mat,A0,ngp);
 
     cout << "Residue Vector: "<< endl << F_Element << endl << endl;
     cout << "Stiffness Matrix: "<< endl << K_Element << endl << endl;
 //    for (int i; i<10; i++)
 //    	cout << "Soham" << endl << endl;
+
+	Test_Function();
+}
+
+void Test_Function(void) {
+	// Needed for testing purposes
+	#include <cstdlib>
+	#include <ctime>
+	#include <cstdio>
+
+	// Seed random number generator using current time.
+	srand(time(NULL));
+
+	// Populate random matricies.
+	const unsigned long Num_El = 20000000;
+
+	Vector3d *N0 = new Vector3d[Num_El];
+	Vector3d *N  = new Vector3d[Num_El];
+	Matrix3d *matrix = new Matrix3d[Num_El];
+
+	for(unsigned long i = 0; i < Num_El; i++) {
+		N0[i] << std::rand(), std::rand(), std::rand();
+		N[i] << std::rand(), std::rand(), std::rand();
+		matrix[i] = MatrixXd::Random(3,3);
+	} // 	for(unsigned long i = 0; i < Num_El; i++) {
+
+	//////////////////////////////////////////////////////////////////////////////
+	// Run code many times, time it!
+
+	// Start timer
+	clock_t timer = std::clock();
+
+	// Run specified function a lot of times
+	for(unsigned long i = 0; i < Num_El; i++)
+		Lambda(N0[i], N[i], matrix[i]);
+
+	// Stop timer
+	timer = std::clock() - timer;
+
+	// Report time
+	std::printf("It took %lu ms to run the code %lu times\n", (long)(( 1000*timer )/( (double)CLOCKS_PER_SEC )), Num_El);
 }

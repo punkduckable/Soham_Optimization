@@ -3,7 +3,7 @@
 
 using namespace Eigen;
 
-void Lambda( Vector3d &N0, Vector3d &N , Matrix3d & matrix) {
+void Lambda( const Vector3d & N0, const Vector3d & N, Matrix3d & matrix) {
 	// local variables
 	double d = N0.dot(N);
 	Vector3d C = N0.cross(N);
@@ -14,4 +14,4 @@ void Lambda( Vector3d &N0, Vector3d &N , Matrix3d & matrix) {
         + cross_vM(C,I)
         + (1/(1+d))*(C*C.transpose());
 
-} // Matrix3d Lambda( Vector3d &N0, Vector3d &N , Matrix3d & matrix) {
+} // void Lambda( const Vector3d & N0, const Vector3d & N, Matrix3d & matrix) {
