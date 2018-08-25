@@ -150,5 +150,9 @@ tuple<VectorXd, VectorXd> Gauss_quad(int order)
 	        wts(9)=0.0666713443086881;
 			return make_tuple(pts,wts);
 
+		default:
+			printf("Gauss quadriture order must be less than 10.\n");
+			return make_tuple(pts, wts);
+
 	}
 }

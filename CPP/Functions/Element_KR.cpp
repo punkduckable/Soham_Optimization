@@ -127,7 +127,7 @@ using namespace Eigen;
         // Required Matrices.
         Ben=Vector2d::Zero(); ben=Ben;ben_r=Ben;Tor=Ben; tor=Ben;tor_r=Ben;
         Lambda(T0,T, LT0T);                        Lambda(T,t, LTt);
-        RT = Rotation(T,PSI);                      Rt = Rotation(t,psi);
+        Rotation(T,PSI,RT);                        Rotation(t,psi, Rt);
         Lambda_d1(T0,T01,T,T1,LT0T1);              Lambda_d1(T,T1,t,t1, LTt1);
         RT1 = Rotation_d1(T,T1,PSI,PSI_1);         Rt1 = Rotation_d1(t,t1,psi,psi_1);
         Lambda_dr(T,t,tr, LTtr);                   Rtr = Rotation_dr(t,tr,psi,psi_r);
@@ -214,7 +214,7 @@ using namespace Eigen;
               // Bending terms in Stiffness
               for (m1=0;m1<2;m1++)
 			        {
-                vec1=a1.segment(0,3);vec2=a1r.segment(0,3);vec3=a1s.segment(0,3);
+                vec1=a1.segment(0,3); vec2=a1r.segment(0,3); vec3=a1s.segment(0,3);
 				        ben_s(m1)=ben_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,vec1,vec3,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
 							  ben_rs(m1)=ben_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,vec1,vec2,vec3,A0,m1+2);
 						  }

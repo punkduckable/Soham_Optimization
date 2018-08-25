@@ -3,7 +3,7 @@
 
 using namespace Eigen;
 
-Matrix3d cross_vM( Vector3d &v, Matrix3d &M ) {
+Matrix3d cross_vM( const Vector3d & v, const Matrix3d & M ) {
 	Matrix3d matrix;
 
 	/* Eigen's matricies are stored in column-major order. To improve performnace,
@@ -25,6 +25,6 @@ Matrix3d cross_vM( Vector3d &v, Matrix3d &M ) {
 	matrix(1,2) = v(2)*M(0,2) - v(0)*M(2,2);
 	matrix(2,2) = v(0)*M(1,2) - v(1)*M(0,2);
 
-//	cout << matrix << endl;
+	//	cout << matrix << endl;
 	return matrix;
-} // Matrix3d cross_vM( Vector3d &v, Matrix3d &M ) {
+} // Matrix3d cross_vM( Vector3d & v, Matrix3d & M ) {

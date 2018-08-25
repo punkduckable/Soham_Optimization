@@ -61,14 +61,14 @@ void Test_Function(void) {
 	// Populate random matricies.
 	const unsigned long Num_El = 20000000;
 
-	Vector3d *N0 = new Vector3d[Num_El];
-	Vector3d *N  = new Vector3d[Num_El];
-	Matrix3d *matrix = new Matrix3d[Num_El];
+	double *s1  = new double[Num_El];
+	Vector3d *v1 = new Vector3d[Num_El];
+	Matrix3d *m1 = new Matrix3d[Num_El];
 
 	for(unsigned long i = 0; i < Num_El; i++) {
-		N0[i] << std::rand(), std::rand(), std::rand();
-		N[i] << std::rand(), std::rand(), std::rand();
-		matrix[i] = MatrixXd::Random(3,3);
+		s1[i] = std::rand();
+		v1[i] << std::rand(), std::rand(), std::rand();
+		m1[i] = MatrixXd::Random(3,3);
 	} // 	for(unsigned long i = 0; i < Num_El; i++) {
 
 	//////////////////////////////////////////////////////////////////////////////
@@ -79,15 +79,16 @@ void Test_Function(void) {
 
 	// Run specified function a lot of times
 	for(unsigned long i = 0; i < Num_El; i++)
-		Lambda_d1(N0[i], N[i], N0[i], N[i], matrix[i]);
+		Rotation(v1[i], s1[i], m1[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;
 
+
 	// Free dynamically allocated memory
-	delete [] matrix;
-	delete [] N0;
-	delete [] N;
+	delete [] s1;
+	delete [] v1;
+	delete [] m1;
 
 	// Report time
 	std::printf("It took %lu ms to run the code %lu times\n", (long)(( 1000*timer )/( (double)CLOCKS_PER_SEC )), Num_El);
