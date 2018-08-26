@@ -7,11 +7,11 @@ using namespace Eigen;
 
 void Lambda_dr(const Vector3d & T, const Vector3d & t, const Vector3d & tr, Matrix3d & matrix) {
 	// Local variables
-	double dTt = T.dot(t);
-	double dTtr = T.dot(tr);
-	Vector3d CTt = T.cross(t);
-	Vector3d CTtr = T.cross(tr);
-	Matrix3d I = Matrix3d::Identity();
+	const double dTt = T.dot(t);
+	const double dTtr = T.dot(tr);
+	const Vector3d CTt = T.cross(t);
+	const Vector3d CTtr = T.cross(tr);
+	const Matrix3d I = Matrix3d::Identity();
 
 	// Calculated result
 	matrix = dTtr*I

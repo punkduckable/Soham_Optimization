@@ -5,10 +5,10 @@ using namespace Eigen;
 
 void Lambda_drs(const Vector3d & T, const Vector3d & t, const Vector3d & tr, const Vector3d & ts, const Vector3d & trs, Matrix3d & matrix) {
 	// Local variables
-	double dTt = T.dot(t);
-	Vector3d CTt = T.cross(t);
-	Vector3d vec_cross1 = T.cross(trs);
-	Matrix3d I = Matrix3d::Identity();
+	const double dTt = T.dot(t);
+	const Vector3d CTt = T.cross(t);
+	const Vector3d vec_cross1 = T.cross(trs);
+	const Matrix3d I = Matrix3d::Identity();
 	Matrix3d m1,m2,m3,m4;
 
 	// Intermediate variables (these prevent us from having to calculate the same

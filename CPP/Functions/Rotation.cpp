@@ -5,8 +5,9 @@
 using namespace Eigen;
 
 void Rotation( const Vector3d & t, const double psi, Matrix3d & matrix) {
-	Matrix3d I = Matrix3d::Identity();
+	const Matrix3d I = Matrix3d::Identity();
 //	std::cout << I << endl;
+
 	matrix = I*cos(psi)
 	       + sin(psi)*cross_vM(t,I);
 } // void Rotation( const Vector3d & t, const double psi, Matrix3d & matrix) {

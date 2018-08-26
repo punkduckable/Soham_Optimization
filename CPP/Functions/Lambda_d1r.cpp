@@ -8,10 +8,10 @@ void Lambda_d1r(const Vector3d & T, const Vector3d & T1, const Vector3d & t,
 	              const Vector3d & t1, const Vector3d & tr, const Vector3d & t1r,
 								Matrix3d & matrix) {
 	// Local variables
-	double dTt = T.dot(t);
-	Vector3d CTt=T.cross(t);
-	Matrix3d I = Matrix3d::Identity();
-	Vector3d vec_sum1 = (T1.cross(tr) + T.cross(t1r));
+	const double dTt = T.dot(t);
+	const Vector3d CTt = T.cross(t);
+	const Matrix3d I = Matrix3d::Identity();
+	const Vector3d vec_sum1 = (T1.cross(tr) + T.cross(t1r));
 
 	// Intermediate variables. These are used to reduce the quantity and complexity
 	// of the computations done to get the result.

@@ -12,10 +12,10 @@ void Lambda_d1rs(const Vector3d & T, const Vector3d & T1, const Vector3d & t,
 								 const Vector3d & t1rs, Matrix3d & matrix ) {
 
 	// Local variables
-	double dTt = T.dot(t), dT1t = T1.dot(t), dTt1=T.dot(t1), dTts=T.dot(ts), dTtr=T.dot(tr), dTtrs=T.dot(trs);
-	double dTt1s=T.dot(t1s), dTt1r=T.dot(t1r), dTt1rs=T.dot(t1rs), dT1ts=T1.dot(ts), dT1tr=T1.dot(tr), dT1trs=T1.dot(trs);
+	const double dTt = T.dot(t), dT1t = T1.dot(t), dTt1=T.dot(t1), dTts=T.dot(ts), dTtr=T.dot(tr), dTtrs=T.dot(trs);
+	const double dTt1s=T.dot(t1s), dTt1r=T.dot(t1r), dTt1rs=T.dot(t1rs), dT1ts=T1.dot(ts), dT1tr=T1.dot(tr), dT1trs=T1.dot(trs);
 	Vector3d CTt, CT1t, CTt1, CTts, CTtr, CTtrs, CTt1s, CTt1r, CTt1rs, CT1ts, CT1tr, CT1trs;
-	Matrix3d I = Matrix3d::Identity();
+	const Matrix3d I = Matrix3d::Identity();
 	Matrix3d m[12];
 
 	// Assign vector variables
