@@ -204,7 +204,7 @@ using namespace Eigen;
               ben_s=Vector2d::Zero();                                tor_s = ben_s; ben_rs = ben_s; tor_rs = ben_s;
               Lambda_dr(T,t,ts,LTts);                                Rts=Rotation_dr(t,ts,psi,psi_s);
               Lambda_d1r(T,T1,t,t1,ts,t1s,LTt1s);                    Rt1s=Rotation_d1r(t,t1,ts,t1s,psi,psi_1,psi_s,psi_1s);
-              Lambda_drs(T,t,tr,ts,trs,LTtrs);                       Rtrs=Rotation_drs(t,tr,ts,trs,psi,psi_r,psi_s);
+              Lambda_drs(T,t,tr,ts,trs,LTtrs);                       Rotation_drs(t,tr,ts,trs,psi,psi_r,psi_s,Rtrs);
               Lambda_d1rs(T,T1,t,t1,tr,ts,t1r,t1s,trs,t1rs,LTt1rs);  Rt1rs=Rotation_d1rs(t,t1,tr,ts,t1r,t1s,trs,t1rs,psi,psi_1,psi_r,psi_s,psi_1r,psi_1s);
 //              cout << " LTts: " << endl << LTts << endl << endl;cout << " Rts: " << endl << Rts << endl << endl;
 //              cout << " LTtrs: " << endl << LTtrs << endl << endl;cout << " Rtrs: " << endl << Rtrs << endl << endl;

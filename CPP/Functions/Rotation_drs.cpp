@@ -1,14 +1,18 @@
-#include<iostream>
-#include<cmath>
-#include"Eigen/Dense"
+#include <iostream>
+#include <cmath>
+#include "Eigen/Dense"
+
 using namespace Eigen;
-using namespace std;
-Matrix3d Rotation_drs( Vector3d &t, Vector3d &tr, Vector3d &ts, Vector3d &trs, double psi, double psi_r, double psi_s )
-{
-	Matrix3d matrix,I,CtI; 
-	double sn, cs, psi_rs=0;
-	sn = sin(psi);cs = cos(psi);
-	I = Matrix3d::Identity();CtI = cross_vM(t,I);
-	matrix = psi_rs*(-sn*I+cs*CtI) - psi_s*psi_r*(cs*I+sn*CtI)+psi_s*cs*cross_vM(tr,I)+psi_r*cs*cross_vM(ts,I)+sn*cross_vM(trs,I);
-	return matrix;
+
+void Rotation_drs(const Vector3d & t, const Vector3d & tr, const Vector3d & ts, const Vector3d & trs,
+	                    const double psi, const double psi_r, const double psi_s, Matrix3d & matrix) {
+	// Local variables
+	Matrix3d I = Matrix3d::Identity(), CtI = cross_vM(t,I);
+	const double sn = std::sin(psi), cs = std::cos(psi), psi_rs = 0;
+
+	matrix = (psi_rs*cs - psi_s*psi_r*sn)*CtI
+	       - (psi_rs*sn + psi_s*psi_r*cs)*I
+	 			 + (psi_s*cs)*cross_vM(tr,I)
+				 + (psi_r*cs)*cross_vM(ts,I)
+				 + sn*cross_vM(trs,I);
 }
