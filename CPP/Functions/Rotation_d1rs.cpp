@@ -38,4 +38,4 @@ void Rotation_d1rs(Vector3d & t, Vector3d & t1, Vector3d & tr, Vector3d & ts,
 	matrix += m2;
 	matrix += m3;
 	matrix += m4;
-}
+} // void Rotation_d1rs(Vector3d & t, Vector3d & t1, Vector3d & tr, Vector3d & ts,
