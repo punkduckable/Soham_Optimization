@@ -141,11 +141,11 @@ using namespace Eigen;
 //        cout << " LTt1r: " << endl << LTt1r << endl << endl;cout << " Rt1r: " << endl << Rt1r << endl << endl;
 
         // Bending terms in Residue
-        for (m1=0;m1<2;m1++) {
+        for(m1 = 0; m1 < 2; m1++) {
           vec1=A1.segment(0,3);Ben(m1)=vec1.dot((RT1*LT0T+RT*LT0T1)*A0.col(m1+1));
           vec1=a1.segment(0,3);ben(m1)=vec1.dot((Rt1*LTt*RT*LT0T+Rt*LTt1*RT*LT0T+Rt*LTt*RT1*LT0T+Rt*LTt*RT*LT0T1)*A0.col(m1+1));
           vec1=a1.segment(0,3);vec2=a1r.segment(0,3);
-			    ben_r(m1)=ben_dr(LT0T,LTt,LT0T1,LTt1,LTtr,LTt1r,RT,Rt,RT1,Rt1,Rtr,Rt1r,vec1,vec2,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
+			    ben_r(m1) = ben_dr(LT0T,LTt,LT0T1,LTt1,LTtr,LTt1r,RT,Rt,RT1,Rt1,Rtr,Rt1r,vec1,vec2,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
 				}
 //        cout << "Bending terms in Residue: " << endl<< endl;
 //        cout << Ben<<endl<< endl;cout << ben<<endl<< endl;cout << ben_r<<endl<< endl;
@@ -212,12 +212,12 @@ using namespace Eigen;
 //              cout << " LTt1rs: " << endl << LTt1rs << endl << endl;cout << " Rt1rs: " << endl << Rt1rs << endl << endl;
 
               // Bending terms in Stiffness
-              for (m1=0;m1<2;m1++)
-			        {
+              for(m1 = 0; m1 < 2; m1++) {
                 vec1 = a1.segment(0,3); vec2 = a1r.segment(0,3); vec3 = a1s.segment(0,3);
 				        ben_s(m1) = ben_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,vec1,vec3,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
 							  ben_rs(m1) = ben_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,vec1,vec2,vec3,A0,m1+2);
-						  }
+						  } // for(m1 = 0; m1 < 2; m1++) {
+                
 //              cout << "Bending terms in Stiffness: " << endl<< endl;
 //              cout << ben_s <<endl<< endl;cout <<ben_rs <<endl<< endl;
 

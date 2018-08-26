@@ -82,8 +82,11 @@ void Test_Function(void) {
 	clock_t timer = std::clock();
 
 	// Run specified function a lot of times
-	for(unsigned long i = 0; i < Num_El; i++)
-		Rotation_d1(v1[i], v2[i], s2[i], s1[i], m1[i]);
+	for(unsigned long i = 0; i < Num_El - 12; i++)
+		s2[i] = ben_dr(m1[i], m1[i+1], m1[i+2], m1[i+3],
+			          	 m1[i+4], m1[i+5], m1[i+6], m1[i+7],
+									 m1[i+8], m1[i+9], m1[i+10], m1[i+11],
+									 v1[i], v2[i], m1[i+12], 1);
 
 	// Stop timer
 	timer = std::clock() - timer;
