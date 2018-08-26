@@ -62,16 +62,12 @@ void Test_Function(void) {
 	const unsigned long Num_El = 20000000;
 
 	double *s1  = new double[Num_El];
-	double *s2 = new double[Num_El];
 	Vector3d *v1 = new Vector3d[Num_El];
-	Vector3d *v2 = new Vector3d[Num_El];
 	Matrix3d *m1 = new Matrix3d[Num_El];
 
 	for(unsigned long i = 0; i < Num_El; i++) {
 		s1[i] = std::rand();
-		s2[i] = std::rand();
 		v1[i] << std::rand(), std::rand(), std::rand();
-		v2[i] << std::rand(), std::rand(), std::rand();
 		m1[i] = MatrixXd::Random(3,3);
 	} // 	for(unsigned long i = 0; i < Num_El; i++) {
 
@@ -82,20 +78,20 @@ void Test_Function(void) {
 	clock_t timer = std::clock();
 
 	// Run specified function a lot of times
-	for(unsigned long i = 0; i < Num_El - 12; i++)
-		s2[i] = ben_dr(m1[i], m1[i+1], m1[i+2], m1[i+3],
-			          	 m1[i+4], m1[i+5], m1[i+6], m1[i+7],
-									 m1[i+8], m1[i+9], m1[i+10], m1[i+11],
-									 v1[i], v2[i], m1[i+12], 1);
+	for(unsigned long i = 0; i < Num_El - 20; i++)
+		s1[i] = ben_drs(m1[i], m1[i+1], m1[i+2], m1[i+3],
+			          	  m1[i+4], m1[i+5], m1[i+6], m1[i+7],
+									  m1[i+8], m1[i+9], m1[i+10], m1[i+11],
+							 		  m1[i+12], m1[i+13], m1[i+14], m1[i+15],
+							 		  m1[i+16], m1[i+17], m1[i+18], m1[i+19],
+									  v1[i], v1[i+1], v1[i+2], m1[i+20], 1);
 
 	// Stop timer
 	timer = std::clock() - timer;
 
 	// Free dynamically allocated memory
 	delete [] s1;
-	delete [] s2;
 	delete [] v1;
-	delete [] v2;
 	delete [] m1;
 
 	// Report time

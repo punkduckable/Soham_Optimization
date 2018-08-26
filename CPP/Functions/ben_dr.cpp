@@ -29,4 +29,4 @@ double ben_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 
 	// Calculte reault
 	return  v1.dot(a1) + v2.dot(a1r) ;
-}
+} // double ben_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT0T1, const Matrix3d & LTt1,
