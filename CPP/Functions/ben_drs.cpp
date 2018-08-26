@@ -1,17 +1,15 @@
 #include <iostream>
-#include <cmath>
 #include "Eigen/Dense"
 
 using namespace Eigen;
-using namespace std;
 
-double ben_drs(Matrix3d & LT0T,	 Matrix3d & LTt,    Matrix3d & LT0T1,  Matrix3d & LTt1,
-	             Matrix3d & LTtr,  Matrix3d & LTts,   Matrix3d & LTt1r,  Matrix3d & LTt1s,
-							 Matrix3d & LTtrs, Matrix3d & LTt1rs, Matrix3d & RT,     Matrix3d & Rt,
-							 Matrix3d & RT1, 	 Matrix3d & Rt1,    Matrix3d & Rtr,    Matrix3d & Rts,
-							 Matrix3d & Rt1r,  Matrix3d & Rt1s,   Matrix3d & Rtrs,   Matrix3d & Rt1rs,
-							 Vector3d & a1,    Vector3d & a1r,    Vector3d & a1s,    Matrix3d & A0,
-							 double alpha) {
+double ben_drs(const Matrix3d & LT0T,	 const Matrix3d & LTt,    const Matrix3d & LT0T1,  const Matrix3d & LTt1,
+	             const Matrix3d & LTtr,  const Matrix3d & LTts,   const Matrix3d & LTt1r,  const Matrix3d & LTt1s,
+							 const Matrix3d & LTtrs, const Matrix3d & LTt1rs, const Matrix3d & RT,     const Matrix3d & Rt,
+							 const Matrix3d & RT1, 	 const Matrix3d & Rt1,    const Matrix3d & Rtr,    const Matrix3d & Rts,
+							 const Matrix3d & Rt1r,  const Matrix3d & Rt1s,   const Matrix3d & Rtrs,   const Matrix3d & Rt1rs,
+							 const Vector3d & a1,    const Vector3d & a1r,    const Vector3d & a1s,    const Matrix3d & A0,
+							 const double alpha) {
 
 	double scalar;
 	Vector3d v1,v2,v3;

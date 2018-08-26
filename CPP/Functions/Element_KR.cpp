@@ -184,24 +184,24 @@ using namespace Eigen;
 
         for (k=0;k<nos;k++) {
         	for (k1=0;k1<dof;k1++) {
-        		s=dof*k+k1;// sth dof (local).
+        		s=dof*k + k1;// sth dof (local).
 
             if (r<=s) {
               // Forming required vectors.
-              as=Vector4d::Zero();a1s=as;a11s=as;
-              as(k1,0)=N(0,k); a1s(k1,0)=dN1(i,k); a11s(k1,0)=dN2(i,k); psi_s=as(3,0); psi_1s=a1s(3,0);
+              as = Vector4d::Zero(); a1s = as; a11s = as;
+              as(k1,0) = N(0,k); a1s(k1,0) = dN1(i,k); a11s(k1,0) = dN2(i,k); psi_s = as(3,0); psi_1s = a1s(3,0);
 
               //Normalized tangent vectors.
-              vec1=a1.segment(0,3);   vec2=a1s.segment(0,3);    ts=tangent_dr(vec1,vec2,norm_a1);
-              vec1=a1.segment(0,3);   vec2=a11.segment(0,3);    vec3=a1s.segment(0,3);    vec4=a11s.segment(0,3);   t1s=tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
-              vec3=a1r.segment(0,3);  vec4=a1s.segment(0,3);    trs=tangent_drs(vec1,vec3,vec4,norm_a1);
-              vec1=a1.segment(0,3);   vec2=a11.segment(0,3);    vec3=a1r.segment(0,3);    vec4=a1s.segment(0,3);    vec5=a11r.segment(0,3);   vec6=a11s.segment(0,3);
-              t1rs=tangent_d1rs(vec1,vec2,vec3,vec4,vec5,vec6,norm_a1);
+              vec1 = a1.segment(0,3);   vec2 = a1s.segment(0,3);    ts = tangent_dr(vec1,vec2,norm_a1);
+              vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1s.segment(0,3);    vec4 = a11s.segment(0,3);   t1s = tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
+              vec3 = a1r.segment(0,3);  vec4 = a1s.segment(0,3);    trs = tangent_drs(vec1,vec3,vec4,norm_a1);
+              vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1r.segment(0,3);    vec4 = a1s.segment(0,3);    vec5 = a11r.segment(0,3);   vec6 = a11s.segment(0,3);
+              t1rs = tangent_d1rs(vec1,vec2,vec3,vec4,vec5,vec6,norm_a1);
 //              cout << "Normalized tangent vectors: " << endl<< endl;
 //              cout << ts << endl<< endl;cout << t1s << endl<< endl;cout << trs << endl<< endl;cout << t1rs << endl<< endl;
 
               // Required Matrices.
-              ben_s=Vector2d::Zero();                                tor_s = ben_s; ben_rs = ben_s; tor_rs = ben_s;
+              ben_s = Vector2d::Zero();                              tor_s = ben_s; ben_rs = ben_s; tor_rs = ben_s;
               Lambda_dr(T,t,ts,LTts);                                Rotation_dr(t,ts,psi,psi_s,Rts);
               Lambda_d1r(T,T1,t,t1,ts,t1s,LTt1s);                    Rotation_d1r(t,t1,ts,t1s,psi,psi_1,psi_s,psi_1s, Rt1s);
               Lambda_drs(T,t,tr,ts,trs,LTtrs);                       Rotation_drs(t,tr,ts,trs,psi,psi_r,psi_s,Rtrs);
@@ -214,36 +214,42 @@ using namespace Eigen;
               // Bending terms in Stiffness
               for (m1=0;m1<2;m1++)
 			        {
-                vec1=a1.segment(0,3); vec2=a1r.segment(0,3); vec3=a1s.segment(0,3);
-				        ben_s(m1)=ben_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,vec1,vec3,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
-							  ben_rs(m1)=ben_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,vec1,vec2,vec3,A0,m1+2);
+                vec1 = a1.segment(0,3); vec2 = a1r.segment(0,3); vec3 = a1s.segment(0,3);
+				        ben_s(m1) = ben_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,vec1,vec3,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
+							  ben_rs(m1) = ben_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,vec1,vec2,vec3,A0,m1+2);
 						  }
 //              cout << "Bending terms in Stiffness: " << endl<< endl;
 //              cout << ben_s <<endl<< endl;cout <<ben_rs <<endl<< endl;
 
               // Torsion terms in Stiffness
-              tor_s(0)= tor_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,A0,3,2);
-              tor_rs(0)=tor_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,A0,3,2);
-              tor_s(1)= tor_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,A0,2,3);
-              tor_rs(1)=tor_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,A0,2,3);
+              tor_s(0) = tor_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,A0,3,2);
+              tor_rs(0) = tor_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,A0,3,2);
+              tor_s(1) = tor_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,A0,2,3);
+              tor_rs(1) = tor_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,A0,2,3);
 //              cout << "Torsion terms in Stiffness: " << endl<< endl;
 //              cout << tor_s <<endl<< endl;cout << tor_rs <<endl<< endl;
 
               //Membrane Contribution
-              vec1=a1.segment(0,3);vec2=a1r.segment(0,3);vec3=a1s.segment(0,3);vec4=A1.segment(0,3);
-              Km = Area*E*(vec1.dot(vec3)*vec1.dot(vec2)+0.5*(vec1.squaredNorm()-vec4.squaredNorm())*vec2.dot(vec3))/pow(vec4.norm(),3);
+              vec1 = a1.segment(0,3); vec2 = a1r.segment(0,3); vec3 = a1s.segment(0,3); vec4 = A1.segment(0,3);
+              Km = Area*E*(vec1.dot(vec3)*vec1.dot(vec2)+ 0.5*(vec1.squaredNorm() - vec4.squaredNorm())*vec2.dot(vec3))/pow(vec4.norm(),3);
 //              cout << "Km" << endl << Km << endl<< endl;
 
               //Bending Contribution
-              Kb = (E/pow(vec4.norm(),3))*(I3*ben_s(0)*ben_r(0)+I2*ben_s(1)*ben_r(1)+I3*(ben(0)-Ben(0))*ben_rs(0)+I2*(ben(1)-Ben(1))*ben_rs(1));
+              Kb = (E/pow(vec4.norm(),3))*(I3*ben_s(0)*ben_r(0)
+                                         + I2*ben_s(1)*ben_r(1)
+                                         + I3*(ben(0)-Ben(0))*ben_rs(0)
+                                         + I2*(ben(1)-Ben(1))*ben_rs(1));
 //              cout << "Kb" << endl <<  Kb << endl<< endl;
 
               //Torsion Contribution
-              Kt= (0.5*G*Ip/vec4.norm())*(tor_r(0)*tor_s(0)+tor_r(1)*tor_s(1)+(tor(0)-Tor(0))*tor_rs(0)+(tor(1)-Tor(1))*tor_rs(1));
+              Kt = (0.5*G*Ip/vec4.norm())*(tor_r(0)*tor_s(0)
+                                         + tor_r(1)*tor_s(1)
+                                         + (tor(0)-Tor(0))*tor_rs(0)
+                                         + (tor(1)-Tor(1))*tor_rs(1));
 //              cout << "Kt" << endl << Kt << endl<< endl;
 
               //Total Stiffness
-              K_Element(r,s)=K_Element(r,s)+(Km+Kb+Kt)*J1*Gauss_W(i);
+              K_Element(r,s) = K_Element(r,s) + (Km + Kb + Kt)*J1*Gauss_W(i);
 						} // if (r <= s) {
 					} // for (k1=0;k1<dof;k1++) {
 				} // for (k=0;k<nos;k++) {
