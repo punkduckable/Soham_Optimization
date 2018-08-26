@@ -9,8 +9,9 @@ double ben_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 							const Vector3d & a1,   const Vector3d & a1r,   const Matrix3d & A0,    const double alpha ) {
 
 	double scalar;
-	Vector3d v1,v2;
+	Vector3d v1, v2;
 
+	// Calculate v1
   v1 = (Rt1r*LTt*RT*LT0T
 		 	+ Rt1*LTtr*RT*LT0T
 		 	+ Rtr*LTt1*RT*LT0T
@@ -20,6 +21,8 @@ double ben_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 		  + Rtr*LTt*RT*LT0T1
 		  + Rt*LTtr*RT*LT0T1)*A0.col(alpha-1);
 
+
+	// Calculate v2
 	v2 = (Rt1*LTt*RT*LT0T
 		  + Rt*LTt1*RT*LT0T
 			+ Rt*LTt*RT1*LT0T
@@ -34,6 +37,7 @@ double ben_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 //	cout << "A0.col(alpha)" << endl << endl;cout << A0.col(alpha-1) << endl << endl;
 
 
+	// Calculte reault
 	scalar = v1.dot(a1) + v2.dot(a1r) ;
 
 	return scalar;

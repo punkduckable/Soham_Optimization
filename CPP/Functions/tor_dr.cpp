@@ -9,9 +9,10 @@ double tor_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 							const Matrix3d & A0,   const double beta,      const double alpha ) {
 
 	double scalar;
-	Vector3d v1,v2,u1,u2;
-	Matrix3d m1,m2,m3,m4;
+	Vector3d v1, v2, u1, u2;
+	Matrix3d m1, m2, m3, m4;
 
+	// Calculate v1, u1
   m1 = Rt1r*LTt*RT*LT0T
 	   + Rt1*LTtr*RT*LT0T;
 
@@ -27,6 +28,8 @@ double tor_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 	v1 = (m1 + m2 + m3 + m4)*A0.col(beta - 1);
 	u1 = (Rt*LTt*RT*LT0T)*A0.col(alpha - 1);
 
+
+	// Calculate v2, u2
   m1 = Rt1*LTt*RT*LT0T
 	   + Rt*LTt1*RT*LT0T;
 
@@ -37,6 +40,8 @@ double tor_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 	u2 = (Rtr*LTt*RT*LT0T
 		 + Rt*LTtr*RT*LT0T)*A0.col(alpha - 1);
 
+
+	// Calculate result
 	scalar = v1.dot(u1) + v2.dot(u2);
 
 	return scalar;
