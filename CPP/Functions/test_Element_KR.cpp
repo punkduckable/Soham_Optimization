@@ -62,12 +62,14 @@ void Test_Function(void) {
 	const unsigned long Num_El = 20000000;
 
 	double *s1  = new double[Num_El];
+	double *s2 = new double[Num_El];
 	Vector3d *v1 = new Vector3d[Num_El];
 	Vector3d *v2 = new Vector3d[Num_El];
 	Matrix3d *m1 = new Matrix3d[Num_El];
 
 	for(unsigned long i = 0; i < Num_El; i++) {
 		s1[i] = std::rand();
+		s2[i] = std::rand();
 		v1[i] << std::rand(), std::rand(), std::rand();
 		v2[i] << std::rand(), std::rand(), std::rand();
 		m1[i] = MatrixXd::Random(3,3);
@@ -81,14 +83,14 @@ void Test_Function(void) {
 
 	// Run specified function a lot of times
 	for(unsigned long i = 0; i < Num_El; i++)
-		Lambda_drs(v1[i], v2[i], v1[i], v2[i], v1[i], m1[i]);
+		Rotation_d1rs(v1[i], v2[i], v1[i], v2[i], v1[i], v2[i], v1[i], v2[i], s1[i], s2[i], s1[i], s2[i], s1[i], s2[i], m1[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;
 
-
 	// Free dynamically allocated memory
 	delete [] s1;
+	delete [] s2;
 	delete [] v1;
 	delete [] v2;
 	delete [] m1;

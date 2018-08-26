@@ -5,13 +5,13 @@
 using namespace Eigen;
 using namespace std;
 
-double ben_drs( Matrix3d & LT0T,	Matrix3d & LTt, 		Matrix3d & LT0T1,  Matrix3d & LTt1,
-	              Matrix3d & LTtr, 	Matrix3d & LTts, 		Matrix3d & LTt1r,  Matrix3d & LTt1s
-								Matrix3d & LTtrs, Matrix3d & LTt1rs, 	Matrix3d & RT,     Matrix3d & Rt,
-								Matrix3d & RT1, 	Matrix3d & Rt1, 		Matrix3d & Rtr,    Matrix3d & Rts,
-								Matrix3d & Rt1r, 	Matrix3d & Rt1s, 		Matrix3d & Rtrs,   Matrix3d & Rt1rs,
-								Vector3d & a1, 		Vector3d & a1r, 		Vector3d & a1s,    Matrix3d & A0,
-								double alpha ) {
+double ben_drs(Matrix3d & LT0T,	 Matrix3d & LTt,    Matrix3d & LT0T1,  Matrix3d & LTt1,
+	             Matrix3d & LTtr,  Matrix3d & LTts,   Matrix3d & LTt1r,  Matrix3d & LTt1s,
+							 Matrix3d & LTtrs, Matrix3d & LTt1rs, Matrix3d & RT,     Matrix3d & Rt,
+							 Matrix3d & RT1, 	 Matrix3d & Rt1,    Matrix3d & Rtr,    Matrix3d & Rts,
+							 Matrix3d & Rt1r,  Matrix3d & Rt1s,   Matrix3d & Rtrs,   Matrix3d & Rt1rs,
+							 Vector3d & a1,    Vector3d & a1r,    Vector3d & a1s,    Matrix3d & A0,
+							 double alpha) {
 
 	double scalar;
 	Vector3d v1,v2,v3;

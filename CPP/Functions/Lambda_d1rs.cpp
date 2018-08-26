@@ -1,10 +1,8 @@
 #include <iostream>
-#include <cmath>
 #include "Eigen/Dense"
 //#include <C:\Users\smm5969\Box Sync\Fibrin CPP\Functions\cross_vM.cpp>
 
 using namespace Eigen;
-using namespace std;
 
 void Lambda_d1rs(const Vector3d & T, const Vector3d & T1, const Vector3d & t,
 	               const Vector3d & t1, const Vector3d & tr, const Vector3d & ts,
