@@ -4,8 +4,8 @@
 
 using namespace Eigen;
 
-void Rotation_d1r(Vector3d & t, Vector3d & t1, Vector3d & tr, Vector3d & t1r,
-	                double psi, double psi_1, double psi_r, double psi_1r,
+void Rotation_d1r(const Vector3d & t, const Vector3d & t1, const Vector3d & tr, const Vector3d & t1r,
+	                const double psi,   const double psi_1,  const double psi_r,  const double psi_1r,
 									Matrix3d & matrix ) {
 
 	const double sn = std::sin(psi), cs = std::cos(psi);

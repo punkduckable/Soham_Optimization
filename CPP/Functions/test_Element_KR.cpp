@@ -83,7 +83,7 @@ void Test_Function(void) {
 
 	// Run specified function a lot of times
 	for(unsigned long i = 0; i < Num_El; i++)
-		Rotation_d1r(v1[i], v2[i], v1[i], v2[i], s1[i], s2[i], s1[i], s2[i], m1[i]);
+		Rotation_d1(v1[i], v2[i], s2[i], s1[i], m1[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;

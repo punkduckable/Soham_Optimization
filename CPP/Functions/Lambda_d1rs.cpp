@@ -4,10 +4,9 @@
 
 using namespace Eigen;
 
-void Lambda_d1rs(const Vector3d & T, const Vector3d & T1, const Vector3d & t,
-	               const Vector3d & t1, const Vector3d & tr, const Vector3d & ts,
-								 const Vector3d & t1r, const Vector3d & t1s, const Vector3d & trs,
-								 const Vector3d & t1rs, Matrix3d & matrix ) {
+void Lambda_d1rs(const Vector3d & T,   const Vector3d & T1,   const Vector3d & t,   const Vector3d & t1, 
+	               const Vector3d & tr,  const Vector3d & ts,   const Vector3d & t1r, const Vector3d & t1s,
+								 const Vector3d & trs, const Vector3d & t1rs, Matrix3d & matrix ) {
 
 	// Local variables
 	const double dTt = T.dot(t), dT1t = T1.dot(t), dTt1=T.dot(t1), dTts=T.dot(ts), dTtr=T.dot(tr), dTtrs=T.dot(trs);

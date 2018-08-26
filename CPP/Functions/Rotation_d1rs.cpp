@@ -4,10 +4,10 @@
 
 using namespace Eigen;
 
-void Rotation_d1rs(Vector3d & t, Vector3d & t1, Vector3d & tr, Vector3d & ts,
-	                 Vector3d & t1r, Vector3d & t1s, Vector3d & trs, Vector3d & t1rs,
-								   double psi, double psi_1, double psi_r, double psi_s,
-									 double psi_1r, double psi_1s, Matrix3d & matrix) {
+void Rotation_d1rs(const Vector3d & t,   const Vector3d & t1,  const Vector3d & tr,  const Vector3d & ts,
+	                 const Vector3d & t1r, const Vector3d & t1s, const Vector3d & trs, const Vector3d & t1rs,
+								   const double psi,     const double psi_1,   const double psi_r,   const double psi_s,
+									 const double psi_1r,  const double psi_1s,  Matrix3d & matrix) {
 
 	Matrix3d m1, m2, m3, m4;
 	const Matrix3d I = Matrix3d::Identity();

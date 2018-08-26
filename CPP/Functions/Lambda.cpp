@@ -3,7 +3,7 @@
 
 using namespace Eigen;
 
-void Lambda( const Vector3d & N0, const Vector3d & N, Matrix3d & matrix) {
+void Lambda(const Vector3d & N0, const Vector3d & N, Matrix3d & matrix) {
 	// local variables
 	const double d = N0.dot(N);
 	const Vector3d C = N0.cross(N);

@@ -129,7 +129,7 @@ using namespace Eigen;
         Lambda(T0,T, LT0T);                        Lambda(T,t, LTt);
         Rotation(T,PSI,RT);                        Rotation(t,psi, Rt);
         Lambda_d1(T0,T01,T,T1,LT0T1);              Lambda_d1(T,T1,t,t1, LTt1);
-        RT1 = Rotation_d1(T,T1,PSI,PSI_1);         Rt1 = Rotation_d1(t,t1,psi,psi_1);
+        Rotation_d1(T,T1,PSI,PSI_1,RT1);           Rotation_d1(t,t1,psi,psi_1,Rt1);
         Lambda_dr(T,t,tr, LTtr);                   Rotation_dr(t,tr,psi,psi_r,Rtr);
         Lambda_d1r(T,T1,t,t1,tr,t1r,LTt1r);        Rotation_d1r(t,t1,tr,t1r,psi,psi_1,psi_r,psi_1r,Rt1r);
 //        cout << "Required Matrices: " << endl<< endl;

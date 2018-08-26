@@ -4,9 +4,8 @@
 
 using namespace Eigen;
 
-void Lambda_d1r(const Vector3d & T, const Vector3d & T1, const Vector3d & t,
-	              const Vector3d & t1, const Vector3d & tr, const Vector3d & t1r,
-								Matrix3d & matrix) {
+void Lambda_d1r(const Vector3d & T,  const Vector3d & T1,  const Vector3d & t, const Vector3d & t1, 
+	              const Vector3d & tr, const Vector3d & t1r, Matrix3d & matrix) {
 	// Local variables
 	const double dTt = T.dot(t);
 	const Vector3d CTt = T.cross(t);

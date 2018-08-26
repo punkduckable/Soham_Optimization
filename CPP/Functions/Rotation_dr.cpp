@@ -4,7 +4,8 @@
 
 using namespace Eigen;
 
-void Rotation_dr(const Vector3d & t, const Vector3d & tr, const double psi, const double psi_r, Matrix3d & matrix ) {
+void Rotation_dr(const Vector3d & t, const Vector3d & tr, const double psi, const double psi_r,
+	               Matrix3d & matrix ) {
 	const Matrix3d I = Matrix3d::Identity();
 	const double sn = std::sin(psi);
 

@@ -5,7 +5,7 @@
 using namespace Eigen;
 
 void Rotation_drs(const Vector3d & t, const Vector3d & tr, const Vector3d & ts, const Vector3d & trs,
-	                    const double psi, const double psi_r, const double psi_s, Matrix3d & matrix) {
+	                const double psi,   const double psi_r,  const double psi_s,  Matrix3d & matrix) {
 	// Local variables
 	const Matrix3d I = Matrix3d::Identity(), CtI = cross_vM(t,I);
 	const double sn = std::sin(psi), cs = std::cos(psi), psi_rs = 0;
