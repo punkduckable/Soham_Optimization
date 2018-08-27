@@ -217,7 +217,7 @@ using namespace Eigen;
 				        ben_s(m1) = ben_dr(LT0T,LTt,LT0T1,LTt1,LTts,LTt1s,RT,Rt,RT1,Rt1,Rts,Rt1s,vec1,vec3,A0,m1+2); // last argument is alpha/beta (look into the function for more detail)
 							  ben_rs(m1) = ben_drs(LT0T,LTt,LT0T1,LTt1,LTtr,LTts,LTt1r,LTt1s,LTtrs,LTt1rs,RT,Rt,RT1,Rt1,Rtr,Rts,Rt1r,Rt1s,Rtrs,Rt1rs,vec1,vec2,vec3,A0,m1+2);
 						  } // for(m1 = 0; m1 < 2; m1++) {
-                
+
 //              cout << "Bending terms in Stiffness: " << endl<< endl;
 //              cout << ben_s <<endl<< endl;cout <<ben_rs <<endl<< endl;
 
@@ -231,7 +231,7 @@ using namespace Eigen;
 
               //Membrane Contribution
               vec1 = a1.segment(0,3); vec2 = a1r.segment(0,3); vec3 = a1s.segment(0,3); vec4 = A1.segment(0,3);
-              Km = Area*E*(vec1.dot(vec3)*vec1.dot(vec2)+ 0.5*(vec1.squaredNorm() - vec4.squaredNorm())*vec2.dot(vec3))/pow(vec4.norm(),3);
+              Km = Area*E*(vec1.dot(vec3)*vec1.dot(vec2) + 0.5*(vec1.squaredNorm() - vec4.squaredNorm())*vec2.dot(vec3))/pow(vec4.norm(),3);
 //              cout << "Km" << endl << Km << endl<< endl;
 
               //Bending Contribution
