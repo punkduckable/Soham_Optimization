@@ -209,7 +209,7 @@ using namespace Eigen;
               vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1s.segment(0,3);    vec4 = a11s.segment(0,3);   t1s = tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
               vec3 = a1r.segment(0,3);  vec4 = a1s.segment(0,3);    tangent_drs(vec1,vec3,vec4,norm_a1, trs);
               vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1r.segment(0,3);    vec4 = a1s.segment(0,3);    vec5 = a11r.segment(0,3);   vec6 = a11s.segment(0,3);
-              t1rs = tangent_d1rs(vec1,vec2,vec3,vec4,vec5,vec6,norm_a1);
+              tangent_d1rs(vec1,vec2,vec3,vec4,vec5,vec6,norm_a1,t1rs);
 //              cout << "Normalized tangent vectors: " << endl<< endl;
 //              cout << ts << endl<< endl;cout << t1s << endl<< endl;cout << trs << endl<< endl;cout << t1rs << endl<< endl;
 

@@ -78,8 +78,9 @@ void Test_Function(void) {
 	clock_t timer = std::clock();
 
 	// Run specified function a lot of times
-	for(unsigned long i = 0; i < Num_El - 2; i++)
-		tangent_drs(v1[i], v1[i+1], v1[i+2], 1, v1[i]);
+	for(unsigned long i = 0; i < Num_El - 5; i++)
+	  tangent_d1rs(v1[i], v1[i+1], v1[i+2], v1[i+3],
+			                   v1[i+4], v1[i+5], 1, v1[i]);
 
 	// Stop timer
 	timer = std::clock() - timer;
