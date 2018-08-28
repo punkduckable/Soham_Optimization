@@ -1,11 +1,9 @@
-#include<iostream>
-#include"Eigen/Dense"
+#include <iostream>
+#include "Eigen/Dense"
+
 using namespace Eigen;
-using namespace std;
-Vector3d tangent_dr( Vector3d &a1,Vector3d &a1r, double norm_a1 )
-{
-	Vector3d t;
+
+void tangent_dr(const Vector3d & a1, const Vector3d & a1r, const double norm_a1, Vector3d & t) {
 	double n = norm_a1;
-	t = a1r/n -(a1.dot(a1r))*a1/pow(n,3);
-	return t;
-}
+  t = a1r/n -(a1.dot(a1r))*a1/pow(n,3);
+} // void tangent_dr(const Vector3d & a1, const Vector3d & a1r, const double norm_a1, const Vector3d  ) {

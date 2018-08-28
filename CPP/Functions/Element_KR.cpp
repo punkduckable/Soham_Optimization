@@ -124,7 +124,7 @@ using namespace Eigen;
         vec1 = A1.segment(0,3);  tangent(vec1, T);         vec1 = a1.segment(0,3);               tangent(vec1, t);          T01 = Vector3d::Zero();
         vec1 = A1.segment(0,3);  vec2 = A11.segment(0,3);  T1 = tangent_d1(vec1,vec2,norm_A1);
         vec1 = a1.segment(0,3);  vec2 = a11.segment(0,3);  t1 = tangent_d1(vec1,vec2,norm_a1);
-        vec1 = a1.segment(0,3);  vec2 = a1r.segment(0,3);  tr = tangent_dr(vec1,vec2,norm_a1);
+        vec1 = a1.segment(0,3);  vec2 = a1r.segment(0,3);  tangent_dr(vec1,vec2,norm_a1, tr);
         vec1 = a1.segment(0,3);  vec2 = a11.segment(0,3);  vec3 = a1r.segment(0,3);              vec4 = a11r.segment(0,3);  t1r = tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
 //        cout << "Normalized tangent vectors: " << endl<< endl;
 //        cout << T << endl<< endl;cout << t << endl<< endl;cout << T01 << endl<< endl;
@@ -205,9 +205,9 @@ using namespace Eigen;
               as(k1,0) = N(0,k); a1s(k1,0) = dN1(i,k); a11s(k1,0) = dN2(i,k); psi_s = as(3,0); psi_1s = a1s(3,0);
 
               //Normalized tangent vectors.
-              vec1 = a1.segment(0,3);   vec2 = a1s.segment(0,3);    ts = tangent_dr(vec1,vec2,norm_a1);
+              vec1 = a1.segment(0,3);   vec2 = a1s.segment(0,3);    tangent_dr(vec1,vec2,norm_a1, ts);
               vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1s.segment(0,3);    vec4 = a11s.segment(0,3);   t1s = tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
-              vec3 = a1r.segment(0,3);  vec4 = a1s.segment(0,3);    trs = tangent_drs(vec1,vec3,vec4,norm_a1);
+              vec3 = a1r.segment(0,3);  vec4 = a1s.segment(0,3);    tangent_drs(vec1,vec3,vec4,norm_a1, trs);
               vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1r.segment(0,3);    vec4 = a1s.segment(0,3);    vec5 = a11r.segment(0,3);   vec6 = a11s.segment(0,3);
               t1rs = tangent_d1rs(vec1,vec2,vec3,vec4,vec5,vec6,norm_a1);
 //              cout << "Normalized tangent vectors: " << endl<< endl;
