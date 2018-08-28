@@ -10,16 +10,8 @@ double tor_drs(const Matrix3d & LT0T,  const Matrix3d & LTt,    const Matrix3d &
 							 const Matrix3d & Rt1r,  const Matrix3d & Rt1s,   const Matrix3d & Rtrs,  const Matrix3d & Rt1rs,
 							 const Matrix3d & A0,    const int beta,          const int alpha ) {
 
-	// Local variables
-	const Matrix3d RT_LT0T = RT*LT0T;
-	const Matrix3d RT1_LT0T = RT1*LT0T;
-	const Matrix3d RT_LT0T1 = RT*LT0T1;
-	const Matrix3d Rtrs_LTt_plus_Rts_LTtr_plus_Rtr_LTts_plus_Rt_LTtrs = Rtrs*LTt + Rts*LTtr + Rtr*LTts + Rt*LTtrs;
-	const Matrix3d Rtr_LTt_plus_Rt_LTtr = Rtr*LTt + Rt*LTtr;
-	const Matrix3d Rts_LTt = Rts*LTt;
-	const Matrix3d Rt_LTts = Rt*LTts;
-
 	// Calculate v1, u1
+	const Matrix3d RT_LT0T = RT*LT0T;
   Matrix3d m1 = (Rt1rs*LTt
 	    + Rt1s*LTtr
 		  + Rt1r*LTts
@@ -30,8 +22,11 @@ double tor_drs(const Matrix3d & LT0T,  const Matrix3d & LTt,    const Matrix3d &
 		  + Rtr*LTt1s
 		  + Rt*LTt1rs)*RT_LT0T;
 
+	const Matrix3d RT1_LT0T = RT1*LT0T;
+	const Matrix3d Rtrs_LTt_plus_Rts_LTtr_plus_Rtr_LTts_plus_Rt_LTtrs = Rtrs*LTt + Rts*LTtr + Rtr*LTts + Rt*LTtrs;
 	Matrix3d m3 = (Rtrs_LTt_plus_Rts_LTtr_plus_Rtr_LTts_plus_Rt_LTtrs)*RT1_LT0T;
 
+	const Matrix3d RT_LT0T1 = RT*LT0T1;
 	Matrix3d m4 = (Rtrs_LTt_plus_Rts_LTtr_plus_Rtr_LTts_plus_Rt_LTtrs)*RT_LT0T1;
 
 	Vector3d v1 = (m1 + m2 + m3 + m4)*A0.col(beta - 1);
@@ -43,11 +38,14 @@ double tor_drs(const Matrix3d & LT0T,  const Matrix3d & LTt,    const Matrix3d &
 
 	m2 = (Rtr*LTt1 + Rt*LTt1r)*RT_LT0T;
 
+	const Matrix3d Rtr_LTt_plus_Rt_LTtr = Rtr*LTt + Rt*LTtr;
 	m3 = (Rtr_LTt_plus_Rt_LTtr)*RT1_LT0T;
 
 	m4 = (Rtr_LTt_plus_Rt_LTtr)*RT_LT0T1;
 
 	Vector3d v2 = (m1 + m2 + m3 + m4)*A0.col(beta - 1);
+	const Matrix3d Rts_LTt = Rts*LTt;
+	const Matrix3d Rt_LTts = Rt*LTts;
 	Vector3d u2 = ((Rts_LTt + Rt_LTts)*RT_LT0T)*A0.col(alpha - 1);
 
 

@@ -9,8 +9,9 @@ double ben_dr(const Matrix3d & LT0T, const Matrix3d & LTt,   const Matrix3d & LT
 							const Vector3d & a1,   const Vector3d & a1r,   const Matrix3d & A0,    const int alpha ) {
 
 	// Calculate v1
-  Vector3d v1 = ( ( (Rt1r*LTt + Rt1*LTtr + Rtr*LTt1 + Rt*LTt1r)*RT + (Rtr*LTt + Rt*LTtr)*RT1 )*LT0T
-		   					+ (Rtr*LTt + Rt*LTtr)*RT*LT0T1
+	const Matrix3d Rtr_LTt__plus_Rt_LTtr = Rtr*LTt + Rt*LTtr;
+  Vector3d v1 = ( ( (Rt1r*LTt + Rt1*LTtr + Rtr*LTt1 + Rt*LTt1r)*RT + (Rtr_LTt__plus_Rt_LTtr)*RT1 )*LT0T
+		   					+ (Rtr_LTt__plus_Rt_LTtr)*RT*LT0T1
 		   					)*A0.col(alpha-1);
 
 

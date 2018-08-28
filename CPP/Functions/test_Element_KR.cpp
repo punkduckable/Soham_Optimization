@@ -82,9 +82,9 @@ void Test_Function(void) {
 		s1[i] = tor_drs(m1[i], m1[i+1], m1[i+2], m1[i+3],
 			          	  m1[i+4], m1[i+5], m1[i+6], m1[i+7],
 								 	  m1[i+8], m1[i+9], m1[i+10], m1[i+11],
-										m1[i+12], m1[i+13], m1[i+14], m1[i+15],
-										m1[i+16], m1[i+17], m1[i+18], m1[i+19],
-										m1[i+20], 1, 1);
+									  m1[i+12], m1[i+13], m1[i+14], m1[i+15],
+									  m1[i+16], m1[i+17], m1[i+18], m1[i+19],
+									  m1[i+20], 1, 1);
 
 	// Stop timer
 	timer = std::clock() - timer;
