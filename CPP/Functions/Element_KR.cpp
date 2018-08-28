@@ -122,10 +122,10 @@ using namespace Eigen;
 
         // Normalized tangent vectors.
         vec1 = A1.segment(0,3);  tangent(vec1, T);         vec1 = a1.segment(0,3);               tangent(vec1, t);          T01 = Vector3d::Zero();
-        vec1 = A1.segment(0,3);  vec2 = A11.segment(0,3);  T1 = tangent_d1(vec1,vec2,norm_A1);
-        vec1 = a1.segment(0,3);  vec2 = a11.segment(0,3);  t1 = tangent_d1(vec1,vec2,norm_a1);
+        vec1 = A1.segment(0,3);  vec2 = A11.segment(0,3);  tangent_d1(vec1,vec2,norm_A1, T1);
+        vec1 = a1.segment(0,3);  vec2 = a11.segment(0,3);  tangent_d1(vec1,vec2,norm_a1, t1);
         vec1 = a1.segment(0,3);  vec2 = a1r.segment(0,3);  tangent_dr(vec1,vec2,norm_a1, tr);
-        vec1 = a1.segment(0,3);  vec2 = a11.segment(0,3);  vec3 = a1r.segment(0,3);              vec4 = a11r.segment(0,3);  t1r = tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
+        vec1 = a1.segment(0,3);  vec2 = a11.segment(0,3);  vec3 = a1r.segment(0,3);              vec4 = a11r.segment(0,3);  tangent_d1r(vec1,vec2,vec3,vec4,norm_a1,t1r);
 //        cout << "Normalized tangent vectors: " << endl<< endl;
 //        cout << T << endl<< endl;cout << t << endl<< endl;cout << T01 << endl<< endl;
 //        cout << T1 << endl<< endl;cout << t1 << endl<< endl;cout << tr << endl<< endl;cout << t1r << endl<< endl;
@@ -206,7 +206,7 @@ using namespace Eigen;
 
               //Normalized tangent vectors.
               vec1 = a1.segment(0,3);   vec2 = a1s.segment(0,3);    tangent_dr(vec1,vec2,norm_a1, ts);
-              vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1s.segment(0,3);    vec4 = a11s.segment(0,3);   t1s = tangent_d1r(vec1,vec2,vec3,vec4,norm_a1);
+              vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1s.segment(0,3);    vec4 = a11s.segment(0,3);   tangent_d1r(vec1,vec2,vec3,vec4,norm_a1, t1s);
               vec3 = a1r.segment(0,3);  vec4 = a1s.segment(0,3);    tangent_drs(vec1,vec3,vec4,norm_a1, trs);
               vec1 = a1.segment(0,3);   vec2 = a11.segment(0,3);    vec3 = a1r.segment(0,3);    vec4 = a1s.segment(0,3);    vec5 = a11r.segment(0,3);   vec6 = a11s.segment(0,3);
               tangent_d1rs(vec1,vec2,vec3,vec4,vec5,vec6,norm_a1,t1rs);

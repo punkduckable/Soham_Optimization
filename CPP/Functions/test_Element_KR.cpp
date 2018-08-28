@@ -34,7 +34,7 @@ int main()
 	clock_t timer = clock();
 
 	////////// ROBERT ADDED THIS FOR LOOP FOR TESTING //////////
- 	for(unsigned int i = 0; i < 1; i++)
+ 	for(unsigned int i = 0; i < 500; i++)
     tie(K_Element,F_Element) = Element_KR(P,Q,End_pt,Ele2Cp,knotVector,order,weights,Mat,A0,ngp);
 
 	timer = clock() - timer;
@@ -46,7 +46,7 @@ int main()
 //    for (int i; i<10; i++)
 //    	cout << "Soham" << endl << endl;
 
-	Test_Function();
+	//Test_Function();
 }
 
 void Test_Function(void) {
