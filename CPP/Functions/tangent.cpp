@@ -1,10 +1,8 @@
-#include<iostream>
-#include"Eigen/Dense"
+#include <iostream>
+#include "Eigen/Dense"
+
 using namespace Eigen;
-using namespace std;
-Vector3d tangent( Vector3d &v )
-{
-	Vector3d t;
+
+void tangent(const Vector3d &v, Vector3d & t) {
 	t = v/v.norm();
-	return t;
-}
+} // void tangent(const Vector3d &v, Vector3d & t) {
